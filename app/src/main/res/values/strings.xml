@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">ToTheMoon</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="title">To the moon</string>
+    <string name="visit_new_country">Visiter un nouveau pays</string>
+    <string name="visited_countries">Mes pays déjà visités</string>
+    <string name="menu">Menu</string>
+    <string name="max_price">Prix maximum</string>
+    <string name="prefered_date">Date préférée</string>
+    <string name="day_margin">Fourchette de jours</string>
+    <string name="travel">Voyager</string>
+    <string name="modify_search">Modifier ma recherche</string>
+    <string name="validate">Valider</string>
+    <string name="cancel">Annuler</string>
+    <string name="trip_list">Liste des voyages</string>
+    <string name="trip_confirmed">Voyage confirmé !</string>
+    <string name="search">Recherche</string>
+
+    <string name="menu_fragment_label">Menu Fragment</string>
+    <string name="search_trip_fragment_label">Search Trip Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>

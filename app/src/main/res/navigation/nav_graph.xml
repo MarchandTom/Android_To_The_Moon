@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/MenuFragment">
+
+    <fragment
+        android:id="@+id/MenuFragment"
+        android:name="com.example.tothemoon.MenuFragment"
+        android:label="@string/menu_fragment_label"
+        tools:layout="@layout/fragment_menu">
+
+        <action
+            android:id="@+id/action_MenuFragment_to_SearchTripFragment"
+            app:destination="@id/SearchTripFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SearchTripFragment"
+        android:name="com.example.tothemoon.SearchTripFragment"
+        android:label="@string/search_trip_fragment_label"
+        tools:layout="@layout/fragment_search_trip">
+
+        <action
+            android:id="@+id/action_SearchTripFragment_to_MenuFragment"
+            app:destination="@id/MenuFragment" />
+    </fragment>
+</navigation>
