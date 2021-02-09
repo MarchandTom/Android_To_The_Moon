@@ -7,8 +7,10 @@
     <string name="visited_countries">Mes pays déjà visités</string>
     <string name="menu">Menu</string>
     <string name="max_price">Prix maximum</string>
+    <string name="price">Prix</string>
     <string name="prefered_date">Date préférée</string>
     <string name="day_margin">Fourchette de jours</string>
+    <string name="amount_of_days">Nombre de  jours</string>
     <string name="travel">Voyager</string>
     <string name="modify_search">Modifier ma recherche</string>
     <string name="validate">Valider</string>
@@ -18,6 +20,7 @@
     <string name="search">Recherche</string>
     <string name="earth_icon">Icone terre</string>
     <string name="moon_icon">Icone lune</string>
+    <string name="euro">€</string>
 
     <string name="menu_fragment_label">Menu Fragment</string>
     <string name="search_trip_fragment_label">Search Trip Fragment</string>
