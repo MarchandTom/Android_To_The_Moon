@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchTripFragment">
+    tools:context=".VisitedCountriesFragment">
 
     <Button
         android:id="@+id/menu_from_visited_countries_button"
@@ -32,15 +32,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/list_trips_from_recap_button"
-        android:layout_width="297dp"
-        android:layout_height="89dp"
-        android:layout_marginTop="168dp"
-        android:text="@string/travel"
-        app:backgroundTint="@color/accent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_from_visited_countries_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

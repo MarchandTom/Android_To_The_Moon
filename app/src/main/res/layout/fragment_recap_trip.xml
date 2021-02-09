@@ -4,23 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchTripFragment">
-
-    <Button
-        android:id="@+id/menu_from_visited_countries_button"
-        android:layout_width="111dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/menu"
-        android:textColor="@color/black"
-        app:backgroundTint="@color/secondary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_first4" />
+    tools:context=".RecapTripFragment">
 
     <TextView
-        android:id="@+id/textview_first4"
+        android:id="@+id/textview_first2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -34,13 +21,25 @@
 
     <Button
         android:id="@+id/list_trips_from_recap_button"
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/trip_list"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/secondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_first2" />
+
+    <Button
+        android:id="@+id/validate_trip_button"
         android:layout_width="297dp"
         android:layout_height="89dp"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="264dp"
         android:text="@string/travel"
         app:backgroundTint="@color/accent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_from_visited_countries_button" />
+        app:layout_constraintTop_toBottomOf="@+id/list_trips_from_recap_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

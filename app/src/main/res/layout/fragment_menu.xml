@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="@string/title"
+        android:textColor="@color/black"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -19,26 +20,49 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_first"
-        android:layout_width="265dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="224dp"
+        android:id="@+id/visit_country_button"
+        android:layout_width="297dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="44dp"
         android:text="@string/visit_new_country"
         app:backgroundTint="@color/accent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_first" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/button_first3"
-        android:layout_width="265dp"
-        android:layout_height="75dp"
+        android:id="@+id/visited_countries_from_menu_button"
+        android:layout_width="297dp"
+        android:layout_height="89dp"
         android:layout_marginTop="20dp"
         android:text="@string/visited_countries"
         android:textColor="#000000"
         app:backgroundTint="@color/secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_first" />
+        app:layout_constraintTop_toBottomOf="@+id/visit_country_button" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:contentDescription="@string/earth_icon"
+        android:src="@drawable/earth_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_first" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:src="@drawable/moon_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/visited_countries_from_menu_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

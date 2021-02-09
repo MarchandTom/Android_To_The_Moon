@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-public class MenuFragment extends Fragment {
+public class RecapTripFragment extends Fragment {
 
     @Override
     public View onCreateView(
@@ -17,25 +17,25 @@ public class MenuFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu, container, false);
+        return inflater.inflate(R.layout.fragment_recap_trip, container, false);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.visit_country_button).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.list_trips_from_recap_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(MenuFragment.this)
-                        .navigate(R.id.action_MenuFragment_to_SearchTripFragment);
+                NavHostFragment.findNavController(RecapTripFragment.this)
+                        .navigate(R.id.action_RecapTripFragment_to_ListTripsFragment);
             }
         });
 
-        view.findViewById(R.id.visited_countries_from_menu_button).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.validate_trip_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(MenuFragment.this)
-                        .navigate(R.id.action_MenuFragment_to_visitedCountriesFragment);
+                NavHostFragment.findNavController(RecapTripFragment.this)
+                        .navigate(R.id.action_RecapTripFragment_to_MenuFragment);
             }
         });
     }

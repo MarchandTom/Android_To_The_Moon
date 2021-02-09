@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_MenuFragment_to_SearchTripFragment"
             app:destination="@id/SearchTripFragment" />
+        <action
+            android:id="@+id/action_MenuFragment_to_visitedCountriesFragment"
+            app:destination="@id/visitedCountriesFragment" />
     </fragment>
     <fragment
         android:id="@+id/SearchTripFragment"
@@ -23,6 +26,43 @@
 
         <action
             android:id="@+id/action_SearchTripFragment_to_MenuFragment"
+            app:destination="@id/MenuFragment" />
+        <action
+            android:id="@+id/action_SearchTripFragment_to_ListTripsFragment"
+            app:destination="@id/ListTripsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ListTripsFragment"
+        android:name="com.example.tothemoon.ListTripsFragment"
+        android:label="@string/list_trips_fragment_label"
+        tools:layout="@layout/fragment_list_trips">
+
+        <action
+            android:id="@+id/action_ListTripsFragment_to_SearchTripFragment"
+            app:destination="@id/SearchTripFragment" />
+        <action
+            android:id="@+id/action_ListTripsFragment_to_RecapTripFragment"
+            app:destination="@id/RecapTripFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/RecapTripFragment"
+        android:name="com.example.tothemoon.RecapTripFragment"
+        android:label="fragment_recap_trip"
+        tools:layout="@layout/fragment_recap_trip" >
+        <action
+            android:id="@+id/action_RecapTripFragment_to_ListTripsFragment"
+            app:destination="@id/ListTripsFragment" />
+        <action
+            android:id="@+id/action_RecapTripFragment_to_MenuFragment"
+            app:destination="@id/MenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/visitedCountriesFragment"
+        android:name="com.example.tothemoon.VisitedCountriesFragment"
+        android:label="fragment_visited_countries"
+        tools:layout="@layout/fragment_visited_countries" >
+        <action
+            android:id="@+id/action_visitedCountriesFragment_to_MenuFragment"
             app:destination="@id/MenuFragment" />
     </fragment>
 </navigation>

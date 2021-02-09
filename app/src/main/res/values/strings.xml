@@ -16,9 +16,13 @@
     <string name="trip_list">Liste des voyages</string>
     <string name="trip_confirmed">Voyage confirmé !</string>
     <string name="search">Recherche</string>
+    <string name="earth_icon">Icone terre</string>
+    <string name="moon_icon">Icone lune</string>
 
     <string name="menu_fragment_label">Menu Fragment</string>
     <string name="search_trip_fragment_label">Search Trip Fragment</string>
+    <string name="list_trips_fragment_label">List Trips Fragment</string>
+    <string name="recap_trip_fragment_label">Recap Trip Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
