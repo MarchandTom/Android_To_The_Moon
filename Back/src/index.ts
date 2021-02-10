@@ -2,6 +2,7 @@ import express from "express";
 import { json } from "body-parser";
 import storage from "node-persist";
 import { CountryRouter } from "./routes/country.router";
+import { TravelRouter } from "./routes/travel.router"
 import { country as _country } from "./datas/_country";
 
 const app = express();
@@ -9,6 +10,7 @@ app.use(json());
 
 //Implementation des routes
 app.use("/country", CountryRouter);
+app.use("/travel", TravelRouter);
 
 storage.init().then(() => {
   storage.setItem("country", _country);

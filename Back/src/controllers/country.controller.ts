@@ -10,6 +10,4 @@ export default class CountryController {
     const countries = await axios.get("countries/fr-FR");
     return res.json(countries.data.Countries);
   }
-
-  async get10RandomCountries() {}
 }
