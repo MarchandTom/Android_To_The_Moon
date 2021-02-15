@@ -7,7 +7,7 @@
     tools:context=".SearchTripFragment">
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch2"
+        android:id="@+id/switchDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/inputPrice" />
 
     <Button
         android:id="@+id/menu_from_visited_countries_button"
@@ -53,10 +53,10 @@
         app:backgroundTint="@color/accent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
+        app:layout_constraintTop_toBottomOf="@+id/inputDate" />
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch1"
+        android:id="@+id/switchPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -66,18 +66,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu_from_visited_countries_button" />
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/day_margin"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/datePicker1" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -86,44 +74,32 @@
         android:text="@string/euro"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextNumber"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNumber"
-        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+        app:layout_constraintBottom_toBottomOf="@+id/inputPrice"
+        app:layout_constraintEnd_toStartOf="@+id/inputPrice"
+        app:layout_constraintTop_toBottomOf="@+id/switchPrice" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/inputPrice"
         android:layout_width="134dp"
         android:layout_height="42dp"
         android:autofillHints="100"
         android:ems="10"
         android:hint="@string/price"
         android:inputType="number"
-        app:layout_constraintEnd_toEndOf="@+id/switch1"
-        app:layout_constraintStart_toStartOf="@+id/switch1"
-        app:layout_constraintTop_toBottomOf="@+id/switch1"
+        app:layout_constraintEnd_toEndOf="@+id/switchPrice"
+        app:layout_constraintStart_toStartOf="@+id/switchPrice"
+        app:layout_constraintTop_toBottomOf="@+id/switchPrice"
         tools:visibility="visible" />
 
     <DatePicker
-        android:id="@+id/datePicker1"
+        android:id="@+id/inputDate"
         android:layout_width="234dp"
         android:layout_height="127dp"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch2"
+        app:layout_constraintTop_toBottomOf="@+id/switchDate"
         tools:targetApi="lollipop" />
-
-    <EditText
-        android:id="@+id/editTextNumber2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/amount_of_days"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch3"
-        android:autofillHints="0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

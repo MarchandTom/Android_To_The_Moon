@@ -9,8 +9,6 @@
     <string name="max_price">Prix maximum</string>
     <string name="price">Prix</string>
     <string name="prefered_date">Date préférée</string>
-    <string name="day_margin">Fourchette de jours</string>
-    <string name="amount_of_days">Nombre de  jours</string>
     <string name="travel">Voyager</string>
     <string name="modify_search">Modifier ma recherche</string>
     <string name="validate">Valider</string>

@@ -23,6 +23,12 @@ public class ListTripsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Bundle bundle = this.getArguments();
+        System.out.println(bundle.getString("price"));
+        System.out.println(bundle.getBoolean("priceSelected"));
+        System.out.println(bundle.getString("date"));
+        System.out.println(bundle.getBoolean("dateSelected"));
+
         view.findViewById(R.id.modify_search_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
