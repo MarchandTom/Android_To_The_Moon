@@ -11,6 +11,10 @@ function getRandomInt(max: number) {
 }
 
 export default class TravelController {
+  async getAllCountries() {
+    return await countryModel.getCountries();
+  }
+
   async getTenRandomTravel(maxPrice: number, alreadyVisitedCountry: Country[]) {
     const countries: Country[] = await countryModel.getCountries();
     const randomTravel = [];

@@ -9,7 +9,7 @@ const app = express();
 app.use(json());
 
 //Implementation des routes
-app.use("/travel", TravelRouter);
+app.use(TravelRouter);
 
 storage.init().then(() => {
   storage.setItem("country", _country);
