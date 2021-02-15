@@ -5,7 +5,15 @@ const controller = new TravelController();
 const router = Router();
 
 router.get("/", async (req: Request, res: Response) => {
-  controller.getAll(req, res);
+  const maxPrice = req.body.maxPrice;
+  const alreadyVisitedCountry = req.body.alreadyVisitedCountry;
+
+  const travel = await controller.getTenRandomTravel(
+    maxPrice,
+    alreadyVisitedCountry
+  );
+
+  res.send(travel);
 });
 
 export { router as TravelRouter };
