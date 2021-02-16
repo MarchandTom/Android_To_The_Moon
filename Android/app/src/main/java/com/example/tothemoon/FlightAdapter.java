@@ -36,7 +36,11 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Flight flight = flights[position];
-        holder.textView.setText(flights[position].toString());
+
+        holder.destination.setText(flights[position].getCountry() + " - " + flights[position].getCapitalCity());
+        holder.price.setText(new Double(flights[position].getPrice()).toString() + " €");
+        holder.date.setText(flights[position].getDepartureDate());
+
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,13 +64,17 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imageView;
-        public TextView textView;
+        public TextView destination;
+        public TextView price;
+        public TextView date;
+
         public RelativeLayout relativeLayout;
         public ViewHolder(View itemView) {
             super(itemView);
-            this.textView = (TextView) itemView.findViewById(R.id.textViewItem);
-            relativeLayout = (RelativeLayout)itemView.findViewById(R.id.relativeLayoutItem);
+            this.destination = itemView.findViewById(R.id.destination);
+            this.price = itemView.findViewById(R.id.price);
+            this.date = itemView.findViewById(R.id.date);
+            relativeLayout = itemView.findViewById(R.id.relativeLayoutItem);
         }
     }
 }

@@ -34,26 +34,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_main_recycler_view"
-        android:layout_width="300dp"
-        android:layout_height="450dp"
+        android:layout_width="410dp"
+        android:layout_height="531dp"
         android:layout_marginTop="46dp"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/modify_search_button"
         app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/select_trip_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="53dp"
-        android:text="exemple voyage bouton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main_recycler_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

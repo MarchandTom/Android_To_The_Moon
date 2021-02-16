@@ -42,13 +42,6 @@ public class ListTripsFragment extends Fragment {
             }
         });
 
-        view.findViewById(R.id.select_trip_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(ListTripsFragment.this)
-                        .navigate(R.id.action_ListTripsFragment_to_RecapTripFragment);
-            }
-        });
 
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -56,7 +49,7 @@ public class ListTripsFragment extends Fragment {
 
         Flight[] flights = new Flight[] {
             new Flight("ESPAGNE","Madrid",d,300.5),
-            new Flight("BELGIQUE","Bruxelles",d,50),
+            new Flight("BELGIQUE","Bruxelles",d,50.0),
             new Flight("ESPAGNE","Madrid",d,300.5),
             new Flight("BELGIQUE","Bruxelles",d,50),
             new Flight("ESPAGNE","Madrid",d,300.5),
@@ -69,7 +62,7 @@ public class ListTripsFragment extends Fragment {
             new Flight("BELGIQUE","Bruxelles",d,50)
         };
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.fragment_main_recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.fragment_main_recycler_view);
         FlightAdapter adapter = new FlightAdapter(flights);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
