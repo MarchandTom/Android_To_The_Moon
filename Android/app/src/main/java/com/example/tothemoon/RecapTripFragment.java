@@ -1,6 +1,7 @@
 package com.example.tothemoon;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,12 @@ public class RecapTripFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Bundle bundle = this.getArguments();
+        Log.i("Bundle",bundle.getString("country") + " / "
+                + bundle.getString("capitalCity") + " / "
+                + bundle.getString("departureDate") + " / "
+                + bundle.getDouble("price"));
 
         view.findViewById(R.id.list_trips_from_recap_button).setOnClickListener(new View.OnClickListener() {
             @Override
