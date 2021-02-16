@@ -4,7 +4,11 @@ import TravelController from "../controllers/travel.controller";
 const controller = new TravelController();
 const router = Router();
 
-router.get("/", async (req: Request, res: Response) => {
+router.get("/country", async (req: Request, res: Response) => {
+  res.send(await controller.getAllCountries());
+});
+
+router.get("/travel", async (req: Request, res: Response) => {
   const maxPrice = req.body.maxPrice;
   const alreadyVisitedCountry = req.body.alreadyVisitedCountry;
 

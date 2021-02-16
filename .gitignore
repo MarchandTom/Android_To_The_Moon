@@ -103,20 +103,20 @@ typings/
 # TernJS port file
 /back/tern-port
 
-/android/*.iml
-/android/.gradle
-/android/local.properties
-/android/.idea/caches
-/android/.idea/libraries
-/android/.idea/modules.xml
-/android/.idea/workspace.xml
-/android/.idea/navEditor.xml
-/android/.idea/assetWizardSettings.xml
-/android/.DS_Store
-/android/build
-/android/captures
-/android/.externalNativeBuild
-/android/.cxx
-/android/local.properties
+/Android/*.iml
+/Android/.gradle
+/Android/local.properties
+/Android/.idea/caches
+/Android/.idea/libraries
+/Android/.idea/modules.xml
+/Android/.idea/workspace.xml
+/Android/.idea/navEditor.xml
+/Android/.idea/assetWizardSettings.xml
+/Android/.DS_Store
+/Android/build
+/Android/captures
+/Android/.externalNativeBuild
+/Android/.cxx
+/Android/local.properties
 
 
