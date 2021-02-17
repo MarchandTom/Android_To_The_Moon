@@ -21,11 +21,15 @@ export default class TravelController {
 
     for (var i = 0; i < 10; i++) {
       const countryName = countries[getRandomInt(countries.length)].name;
-      const checkIfAlreadyVisited = alreadyVisitedCountry.filter((country) => {
-        country.name === countryName;
-      });
+      var checkIfAlreadyVisited = null;
 
-      if (checkIfAlreadyVisited.length > 0) {
+      if (alreadyVisitedCountry && alreadyVisitedCountry.length > 0) {
+        checkIfAlreadyVisited = alreadyVisitedCountry.filter((country) => {
+          country.name === countryName;
+        });
+      }
+
+      if (checkIfAlreadyVisited && checkIfAlreadyVisited.length > 0) {
         i--;
       } else {
         var travel;

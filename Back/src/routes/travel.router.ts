@@ -12,12 +12,16 @@ router.get("/travel", async (req: Request, res: Response) => {
   const maxPrice = req.body.maxPrice;
   const alreadyVisitedCountry = req.body.alreadyVisitedCountry;
 
-  const travel = await controller.getTenRandomTravel(
-    maxPrice,
-    alreadyVisitedCountry
-  );
+  try {
+    const travel = await controller.getTenRandomTravel(
+      maxPrice,
+      alreadyVisitedCountry
+    );
 
-  res.send(travel);
+    res.send(travel);
+  } catch (err) {
+    res.send(err);
+  }
 });
 
 export { router as TravelRouter };

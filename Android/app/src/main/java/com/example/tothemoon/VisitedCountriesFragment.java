@@ -8,8 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.room.Room;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class VisitedCountriesFragment extends Fragment {
+    AppDatabase db = Room.databaseBuilder(getActivity().getApplicationContext(),
+            AppDatabase.class, "database-name").build();
+    CountryDao countryDao = db.countryDao();
+    List<Country> countries = Arrays.asList(countryDao.getAll());
 
     @Override
     public View onCreateView(
