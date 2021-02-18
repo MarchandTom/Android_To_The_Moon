@@ -5,12 +5,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 public class RecapTripFragment extends Fragment {
+    TextView recapDestination;
+    TextView recapPrice;
+    TextView recapDate;
 
     @Override
     public View onCreateView(
@@ -24,11 +29,21 @@ public class RecapTripFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        recapDestination = (TextView)view.findViewById(R.id.recapDestination);
+        recapPrice = (TextView)view.findViewById(R.id.recapPrice);
+        recapDate = (TextView)view.findViewById(R.id.recapDate);
+
         Bundle bundle = this.getArguments();
-        Log.i("Bundle",bundle.getString("country") + " / "
+        System.out.println(bundle.getString("country") + " / "
                 + bundle.getString("capitalCity") + " / "
                 + bundle.getString("departureDate") + " / "
                 + bundle.getDouble("price"));
+
+        recapDestination.setText(bundle.getString("country")+" - "+bundle.getString("capitalCity"));
+        recapPrice.setText(String.valueOf(bundle.getDouble("price"))+" €");
+        String dateDisplay=bundle.getString("departureDate").replace('-', '/');
+        dateDisplay = dateDisplay.substring(0, dateDisplay.length()-3);
+        recapDate.setText(dateDisplay);
 
         view.findViewById(R.id.list_trips_from_recap_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,8 +56,9 @@ public class RecapTripFragment extends Fragment {
         view.findViewById(R.id.validate_trip_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                bundle.putBoolean("confirmedTrip", true);
                 NavHostFragment.findNavController(RecapTripFragment.this)
-                        .navigate(R.id.action_RecapTripFragment_to_MenuFragment);
+                        .navigate(R.id.action_RecapTripFragment_to_MenuFragment, bundle);
             }
         });
     }

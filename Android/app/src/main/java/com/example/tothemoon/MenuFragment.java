@@ -1,9 +1,11 @@
 package com.example.tothemoon;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,6 +24,14 @@ public class MenuFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Bundle bundle = this.getArguments();
+        if(bundle != null && !bundle.isEmpty() && bundle.getBoolean("confirmedTrip")) {
+            bundle.putBoolean("confirmedTrip", false);
+            Toast toast = Toast.makeText(view.getContext(), "Voyage confirmé !", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 200);
+            toast.show();
+        }
 
         view.findViewById(R.id.visit_country_button).setOnClickListener(new View.OnClickListener() {
             @Override
