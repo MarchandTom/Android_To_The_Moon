@@ -6,6 +6,8 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
+import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,8 +36,11 @@ public class CountryRepository {
     }
 
     LiveData<List<Country>> getCountriesFromApi() throws IOException {
-
-        run("http://172.26.64.1:3000/country");
+        Request request = new Request.Builder()
+                .url("https://ap5tothemoon.herokuapp.com/country")
+                .header("Content-Type", "application/json")
+                .build();
+        run(request);
         return null;
     }
 
@@ -47,27 +52,21 @@ public class CountryRepository {
         new InsertAsyncTask(countryDao).execute(country);
     }
 
-    public void run(String url) throws IOException {
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
+    public void run(Request request) throws IOException {
 
         client.newCall(request).enqueue(new Callback() {
-            @Override public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
+            @Override
+            public void onFailure(Call call, IOException e) {
+                String mMessage = e.getMessage().toString();
+                Log.w("failure Response", mMessage);
+                //call.cancel();
             }
 
-            @Override public void onResponse(Call call, Response response) throws IOException {
-                try (ResponseBody responseBody = response.body()) {
-                    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
 
-                    Headers responseHeaders = response.headers();
-                    for (int i = 0, size = responseHeaders.size(); i < size; i++) {
-                        System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
-                    }
+                System.out.println("result="+response.body().string());
 
-                    System.out.println("res:"+responseBody.string());
-                }
             }
         });
     }
