@@ -5,6 +5,7 @@ const controller = new TravelController();
 const router = Router();
 
 router.get("/country", async (req: Request, res: Response) => {
+  console.log("get");
   res.send(await controller.getAllCountries());
 });
 
