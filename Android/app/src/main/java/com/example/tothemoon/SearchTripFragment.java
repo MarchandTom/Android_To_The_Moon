@@ -36,6 +36,19 @@ public class SearchTripFragment extends Fragment {
         priceSelected = (SwitchCompat)view.findViewById(R.id.switchPrice);
         dateSelected = (SwitchCompat)view.findViewById(R.id.switchDate);
 
+        Bundle bundle = this.getArguments();
+        if(bundle!=null) {
+            if(bundle.getString("price") != null) {
+                preferredPrice.setText(bundle.getString("price"));
+            }
+            if(bundle.getString("date") != null) {
+                String[] dateDivided = bundle.getString("date").split("/");
+                preferredDate.updateDate(Integer.valueOf(dateDivided[2]), Integer.valueOf(dateDivided[1]), Integer.valueOf(dateDivided[0]));
+            }
+            priceSelected.setChecked(bundle.getBoolean("priceSelected"));
+            dateSelected.setChecked(bundle.getBoolean("dateSelected"));
+        }
+
         view.findViewById(R.id.menu_from_visited_countries_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

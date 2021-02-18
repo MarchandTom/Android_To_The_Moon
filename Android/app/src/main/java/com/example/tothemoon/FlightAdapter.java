@@ -20,10 +20,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder>{
     private Flight[] flights;
+    private Bundle bundle;
 
     // RecyclerView recyclerView;
-    public FlightAdapter(Flight[] flights) {
+    public FlightAdapter(Flight[] flights, Bundle bundle) {
         this.flights = flights;
+        this.bundle = bundle;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -44,11 +46,10 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
                 bundle.putString("country",flight.getCountry());
                 bundle.putString("capitalCity",flight.getCapitalCity());
                 bundle.putString("departureDate",flight.getDepartureDate());
-                bundle.putDouble("price",flight.getPrice());
+                bundle.putDouble("priceFlight",flight.getPrice());
 
                 Navigation.findNavController(view)
                         .navigate(R.id.action_ListTripsFragment_to_RecapTripFragment,bundle);

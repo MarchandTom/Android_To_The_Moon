@@ -34,13 +34,9 @@ public class RecapTripFragment extends Fragment {
         recapDate = (TextView)view.findViewById(R.id.recapDate);
 
         Bundle bundle = this.getArguments();
-        System.out.println(bundle.getString("country") + " / "
-                + bundle.getString("capitalCity") + " / "
-                + bundle.getString("departureDate") + " / "
-                + bundle.getDouble("price"));
 
         recapDestination.setText(bundle.getString("country")+" - "+bundle.getString("capitalCity"));
-        recapPrice.setText(String.valueOf(bundle.getDouble("price"))+" €");
+        recapPrice.setText(String.valueOf(bundle.getDouble("priceFlight"))+" €");
         String dateDisplay=bundle.getString("departureDate").replace('-', '/');
         dateDisplay = dateDisplay.substring(0, dateDisplay.length()-3);
         recapDate.setText(dateDisplay);
@@ -48,14 +44,19 @@ public class RecapTripFragment extends Fragment {
         view.findViewById(R.id.list_trips_from_recap_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                bundle.remove("country");
+                bundle.remove("capitalCity");
+                bundle.remove("departureDate");
+                bundle.remove("priceFlight");
                 NavHostFragment.findNavController(RecapTripFragment.this)
-                        .navigate(R.id.action_RecapTripFragment_to_ListTripsFragment);
+                        .navigate(R.id.action_RecapTripFragment_to_ListTripsFragment, bundle);
             }
         });
 
         view.findViewById(R.id.validate_trip_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                bundle.clear();
                 bundle.putBoolean("confirmedTrip", true);
                 NavHostFragment.findNavController(RecapTripFragment.this)
                         .navigate(R.id.action_RecapTripFragment_to_MenuFragment, bundle);
