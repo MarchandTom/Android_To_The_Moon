@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
@@ -26,9 +27,12 @@ public class VisitedCountriesFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        countryViewModel = ViewModelProviders.of(requireActivity()).get(CountryViewModel.class);
-        countryViewModel.getAllCountries().observe(getViewLifecycleOwner(),country -> {
-            Log.i("test","test");
+        countryViewModel = new ViewModelProvider(requireActivity()).get(CountryViewModel.class);
+        countryViewModel.getAllCountries().observe(getActivity(), new Observer<List<Country>>() {
+            @Override
+            public void onChanged(List<Country> countries) {
+                System.out.println("framgent: "+countries);
+            }
         });
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_visited_countries, container, false);
