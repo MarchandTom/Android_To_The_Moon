@@ -65,4 +65,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/visited_countries_from_menu_button" />
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>

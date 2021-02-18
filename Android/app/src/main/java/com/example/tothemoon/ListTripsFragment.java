@@ -38,7 +38,7 @@ public class ListTripsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(ListTripsFragment.this)
-                        .navigate(R.id.action_ListTripsFragment_to_SearchTripFragment);
+                        .navigate(R.id.action_ListTripsFragment_to_SearchTripFragment, bundle);
             }
         });
 
@@ -63,7 +63,7 @@ public class ListTripsFragment extends Fragment {
         };
 
         RecyclerView recyclerView = view.findViewById(R.id.fragment_main_recycler_view);
-        FlightAdapter adapter = new FlightAdapter(flights);
+        FlightAdapter adapter = new FlightAdapter(flights, bundle);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(adapter);
