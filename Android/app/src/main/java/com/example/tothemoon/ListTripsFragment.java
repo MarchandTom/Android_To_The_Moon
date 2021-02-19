@@ -83,7 +83,7 @@ public class ListTripsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(ListTripsFragment.this)
-                        .navigate(R.id.action_ListTripsFragment_to_SearchTripFragment);
+                        .navigate(R.id.action_ListTripsFragment_to_SearchTripFragment, bundle);
             }
         });
 

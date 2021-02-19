@@ -1,12 +1,16 @@
 package com.example.tothemoon;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.room.Room;
 
@@ -14,16 +18,22 @@ import java.util.Arrays;
 import java.util.List;
 
 public class VisitedCountriesFragment extends Fragment {
-    AppDatabase db = Room.databaseBuilder(getActivity().getApplicationContext(),
-            AppDatabase.class, "database-name").build();
-    CountryDao countryDao = db.countryDao();
-    List<Country> countries = Arrays.asList(countryDao.getAll());
+
+    private CountryViewModel countryViewModel;
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
+
+        countryViewModel = new ViewModelProvider(requireActivity()).get(CountryViewModel.class);
+        countryViewModel.getAllCountries().observe(getActivity(), new Observer<List<Country>>() {
+            @Override
+            public void onChanged(List<Country> countries) {
+                System.out.println("framgent: "+countries);
+            }
+        });
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_visited_countries, container, false);
     }

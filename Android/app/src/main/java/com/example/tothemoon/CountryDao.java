@@ -1,5 +1,6 @@
 package com.example.tothemoon;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -11,13 +12,13 @@ import java.util.List;
 @Dao
 public interface CountryDao {
     @Query("SELECT * FROM country")
-    public Country[] getAll();
+    public LiveData<List<Country>> getAll();
 
     @Update
     public void updateCountries(Country... countries);
 
     @Insert
-    public void insertAll(Country... countries);
+    public void insert(Country... countries);
 
     @Delete
     public void deleteCountries(Country... countries);

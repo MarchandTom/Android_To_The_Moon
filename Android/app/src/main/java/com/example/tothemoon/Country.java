@@ -7,7 +7,8 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Country {
-    @PrimaryKey @NonNull
+    @NonNull
+    @PrimaryKey
     public String code;
 
     @ColumnInfo(name="name")
@@ -15,4 +16,24 @@ public class Country {
 
     @ColumnInfo(name="visited")
     public boolean visited;
+
+    public Country(){
+    }
+
+    public Country(String code,String name){
+        this.code = code;
+        this.name = name;
+    }
+
+    void setCode(String code){
+        this.code = code;
+    }
+
+    void setName(String name){
+        this.name = name;
+    }
+
+    public String toString(){
+        return "name="+this.name+" code="+this.code;
+    }
 }

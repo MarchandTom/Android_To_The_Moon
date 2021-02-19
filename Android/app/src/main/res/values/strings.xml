@@ -18,6 +18,10 @@
     <string name="search">Recherche</string>
     <string name="earth_icon">Icone terre</string>
     <string name="moon_icon">Icone lune</string>
+    <string name="price_icon">Icone prix</string>
+    <string name="calendar_icon">Icone calendrier</string>
+    <string name="price_recap">Prix voyage</string>
+    <string name="calendar_recap">Date voyage</string>
     <string name="euro">€</string>
 
     <string name="menu_fragment_label">Menu Fragment</string>

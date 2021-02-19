@@ -21,11 +21,13 @@ import java.util.ArrayList;
 
 
 public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder>{
+    private Bundle bundle;
     private ArrayList<Flight> flights;
 
     // RecyclerView recyclerView;
     public FlightAdapter(ArrayList<Flight> flights) {
         this.flights = flights;
+        this.bundle = bundle;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
