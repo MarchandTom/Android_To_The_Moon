@@ -31,7 +31,8 @@ public class CountryViewModel  extends AndroidViewModel {
 
     private void initDatabase(){
         try {
-            countryRepository.getCountriesFromApi();
+            allCountries= countryRepository.getCountriesFromApi();
+            System.out.println("here");
         }catch(IOException e){
             System.err.println(e);
         }
@@ -39,7 +40,8 @@ public class CountryViewModel  extends AndroidViewModel {
 
     private void loadCountries() {
         try{
-            countryRepository.getCountriesFromApi();
+            allCountries=countryRepository.getCountriesFromApi();
+            System.out.println("here2");
         }catch(IOException e){
             System.err.println(e);
         }

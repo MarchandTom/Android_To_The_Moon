@@ -5,6 +5,9 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONObject;
 
@@ -13,6 +16,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.Call;
@@ -28,6 +33,7 @@ public class CountryRepository {
     private LiveData<List<Country>> allCountries;
     private OkHttpClient client;
 
+
     CountryRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         client  = new OkHttpClient();
@@ -36,23 +42,12 @@ public class CountryRepository {
     }
 
     LiveData<List<Country>> getCountriesFromApi() throws IOException {
+        MutableLiveData<List<Country>> liveCountry = new MutableLiveData<>();
         Request request = new Request.Builder()
                 .url("https://ap5tothemoon.herokuapp.com/country")
                 .header("Content-Type", "application/json")
                 .build();
-        run(request);
-        return null;
-    }
-
-    LiveData<List<Country>> getAllCountries(){
-        return allCountries;
-    }
-
-    public void insert (Country country){
-        new InsertAsyncTask(countryDao).execute(country);
-    }
-
-    public void run(Request request) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
 
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -64,13 +59,21 @@ public class CountryRepository {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
-                System.out.println("result="+response.body().string());
-
+                List<Country> countries = Arrays.asList(objectMapper.readValue(response.body().string(), Country[].class));
+                liveCountry.postValue(countries);
             }
         });
+
+        return liveCountry;
     }
 
+    LiveData<List<Country>> getAllCountries(){
+        return allCountries;
+    }
+
+    public void insert (Country country){
+        new InsertAsyncTask(countryDao).execute(country);
+    }
 
     private static class InsertAsyncTask extends AsyncTask
             <Country, Void, Void> {
