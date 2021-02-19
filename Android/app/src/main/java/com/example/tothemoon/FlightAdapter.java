@@ -17,13 +17,15 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 
 public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder>{
-    private Flight[] flights;
     private Bundle bundle;
+    private ArrayList<Flight> flights;
 
     // RecyclerView recyclerView;
-    public FlightAdapter(Flight[] flights, Bundle bundle) {
+    public FlightAdapter(ArrayList<Flight> flights) {
         this.flights = flights;
         this.bundle = bundle;
     }
@@ -37,19 +39,20 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Flight flight = flights[position];
+        final Flight flight = flights.get(position);
 
-        holder.destination.setText(flights[position].getCountry() + " - " + flights[position].getCapitalCity());
-        holder.price.setText(new Double(flights[position].getPrice()).toString() + " €");
-        holder.date.setText(flights[position].getDepartureDate());
+        holder.destination.setText(flights.get(position).getCountry() + " - " + flights.get(position).getCapitalCity());
+        holder.price.setText(new Double(flights.get(position).getPrice()).toString() + " €");
+        holder.date.setText(flights.get(position).getDepartureDate());
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle bundle = new Bundle();
                 bundle.putString("country",flight.getCountry());
                 bundle.putString("capitalCity",flight.getCapitalCity());
                 bundle.putString("departureDate",flight.getDepartureDate());
-                bundle.putDouble("priceFlight",flight.getPrice());
+                bundle.putDouble("price",flight.getPrice());
 
                 Navigation.findNavController(view)
                         .navigate(R.id.action_ListTripsFragment_to_RecapTripFragment,bundle);
@@ -61,7 +64,7 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return flights.length;
+        return flights.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -77,5 +80,9 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
             this.date = itemView.findViewById(R.id.date);
             relativeLayout = itemView.findViewById(R.id.relativeLayoutItem);
         }
+    }
+
+    public void setFlights(ArrayList<Flight> flights) {
+        this.flights = flights;
     }
 }
