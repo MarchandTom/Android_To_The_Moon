@@ -43,6 +43,7 @@ public class CountryRepository {
 
     LiveData<List<Country>> getCountriesFromApi() throws IOException {
         MutableLiveData<List<Country>> liveCountry = new MutableLiveData<>();
+
         Request request = new Request.Builder()
                 .url("https://ap5tothemoon.herokuapp.com/country")
                 .header("Content-Type", "application/json")
@@ -83,7 +84,11 @@ public class CountryRepository {
         }
         @Override
         protected Void doInBackground(final Country... params) {
-            mAsyncTaskDao.insert(params[0]);
+            try{
+                mAsyncTaskDao.insert(params[0]);
+            }catch(Exception e){
+                System.err.println(e);
+            }
             return null;
         }
     }

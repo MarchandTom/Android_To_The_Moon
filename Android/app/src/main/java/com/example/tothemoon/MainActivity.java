@@ -7,12 +7,15 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +26,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         countryViewModel = new ViewModelProvider(this).get(CountryViewModel.class);
+        countryViewModel.loadCountries().observe(this, new Observer<List<Country>>() {
+            @Override
+            public void onChanged(List<Country> countries) {
+                System.out.println("mainActivity"+countries);
+                countryViewModel.insertCountries(countries);
+            }
+        });
 
         setContentView(R.layout.activity_main);
     }

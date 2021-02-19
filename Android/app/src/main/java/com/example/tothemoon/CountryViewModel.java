@@ -18,32 +18,29 @@ public class CountryViewModel  extends AndroidViewModel {
     public CountryViewModel(Application application){
         super(application);
         countryRepository = new CountryRepository(application);
-        initDatabase();
     }
 
     public LiveData<List<Country>> getAllCountries(){
         if(allCountries == null){
-            allCountries = new MutableLiveData<List<Country>>();
-            loadCountries();
+            allCountries = countryRepository.getAllCountries();
         }
         return allCountries;
     }
 
-    private void initDatabase(){
-        try {
-            allCountries= countryRepository.getCountriesFromApi();
-            System.out.println("here");
+    public LiveData<List<Country>> loadCountries() {
+        try{
+            return countryRepository.getCountriesFromApi();
         }catch(IOException e){
             System.err.println(e);
+            return null;
         }
     }
 
-    private void loadCountries() {
-        try{
-            allCountries=countryRepository.getCountriesFromApi();
-            System.out.println("here2");
-        }catch(IOException e){
-            System.err.println(e);
+    public void insertCountries(List<Country> countries){
+        for(Country c: countries){
+            c.setVisited(false);
+            System.out.println("insert into bdd="+c);
+            countryRepository.insert(c);
         }
     }
 

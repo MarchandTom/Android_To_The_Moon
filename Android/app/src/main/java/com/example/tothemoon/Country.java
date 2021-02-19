@@ -33,7 +33,11 @@ public class Country {
         this.name = name;
     }
 
+    void setVisited(boolean visited){
+        this.visited = visited;
+    }
+
     public String toString(){
-        return "name="+this.name+" code="+this.code;
+        return "name="+this.name+", code="+this.code+", visited="+this.visited;
     }
 }
