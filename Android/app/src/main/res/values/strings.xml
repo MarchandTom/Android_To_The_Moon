@@ -22,6 +22,7 @@
     <string name="calendar_icon">Icone calendrier</string>
     <string name="price_recap">Prix voyage</string>
     <string name="calendar_recap">Date voyage</string>
+    <string name="visited">Visité</string>
     <string name="euro">€</string>
 
     <string name="menu_fragment_label">Menu Fragment</string>

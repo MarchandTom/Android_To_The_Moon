@@ -51,6 +51,11 @@ public class ListTripsFragment extends Fragment {
         try {
             ArrayList<Flight> flights = new ArrayList<Flight>();
             flights.add(new Flight("bbbb","bbbb","bbbb",2000));
+            flights.add(new Flight("bbbb","bbbb","bbbb",2000));
+            flights.add(new Flight("bbbb","bbbb","bbbb",2000));
+            flights.add(new Flight("bbbb","bbbb","bbbb",2000));
+            flights.add(new Flight("bbbb","bbbb","bbbb",2000));
+            flights.add(new Flight("bbbb","bbbb","bbbb",2000));
             FlightAdapter adapter = new FlightAdapter(flights);
 
             HttpRequest http = new HttpRequest(adapter);

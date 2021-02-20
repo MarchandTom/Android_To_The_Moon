@@ -12,14 +12,18 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class VisitedCountriesFragment extends Fragment {
 
     private CountryViewModel countryViewModel;
+    RecyclerView recyclerView;//fragment_visited_countries_recycler_view
 
     @Override
     public View onCreateView(
@@ -27,11 +31,15 @@ public class VisitedCountriesFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
+
         countryViewModel = new ViewModelProvider(requireActivity()).get(CountryViewModel.class);
         countryViewModel.getAllCountries().observe(getActivity(), new Observer<List<Country>>() {
             @Override
             public void onChanged(List<Country> countries) {
-                System.out.println("framgent: "+countries);
+                VisitedCountriesAdapter adapter = new VisitedCountriesAdapter(new ArrayList(countries));
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                recyclerView.setAdapter(adapter);
             }
         });
         // Inflate the layout for this fragment
@@ -40,6 +48,8 @@ public class VisitedCountriesFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        recyclerView = view.findViewById(R.id.fragment_visited_countries_recycler_view);
 
         view.findViewById(R.id.menu_from_visited_countries_button).setOnClickListener(new View.OnClickListener() {
             @Override
