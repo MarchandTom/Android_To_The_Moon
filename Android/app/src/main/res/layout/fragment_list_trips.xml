@@ -34,7 +34,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_main_recycler_view"
-        android:layout_width="410dp"
+        android:layout_width="0dp"
         android:layout_height="531dp"
         android:layout_marginTop="46dp"
         android:scrollbars="vertical"
