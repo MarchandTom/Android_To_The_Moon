@@ -9,6 +9,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -41,7 +43,48 @@ public class CountryRepository {
         allCountries = (LiveData<List<Country>>) countryDao.getAll();
     }
 
-    LiveData<List<Country>> getCountriesFromApi() throws IOException {
+    LiveData<List<Flight>> getAllFlights(String price) throws JSONException {
+        MutableLiveData<List<Flight>> liveFlight = new MutableLiveData<>();
+
+
+    JSONObject fr = new JSONObject();
+    fr.put("name","France");
+    fr.put("code","FR");
+
+    JSONArray array = new JSONArray();
+    array.put(fr);
+
+    JSONObject json = new JSONObject();
+    json.put("maxPrice",Integer.parseInt(price));
+    json.put("alreadyVisitedCountry",array);
+
+
+        Request request = new Request.Builder()
+                .url("https://ap5tothemoon.herokuapp.com/travel")
+                .header("Content-Type", "application/json")
+                .build();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                String mMessage = e.getMessage().toString();
+                Log.w("failure Response", mMessage);
+                //call.cancel();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                List<Flight> flights = Arrays.asList(objectMapper.readValue(response.body().string(), Flight[].class));
+                liveFlight.postValue(flights);
+            }
+        });
+
+        return liveFlight;
+    }
+
+    LiveData<List<Country>> getCountriesFromApi() {
         MutableLiveData<List<Country>> liveCountry = new MutableLiveData<>();
 
         Request request = new Request.Builder()
