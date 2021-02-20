@@ -28,6 +28,15 @@ public class VisitedCountriesFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
+
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_visited_countries, container, false);
+    }
+
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        recyclerView = view.findViewById(R.id.fragment_visited_countries_recycler_view);
         viewModel = new ViewModelProvider(requireActivity()).get(ViewModel.class);
         viewModel.getAllCountries().observe(getActivity(), new Observer<List<Country>>() {
             @Override
@@ -38,14 +47,6 @@ public class VisitedCountriesFragment extends Fragment {
                 recyclerView.setAdapter(adapter);
             }
         });
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_visited_countries, container, false);
-    }
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        recyclerView = view.findViewById(R.id.fragment_visited_countries_recycler_view);
 
         view.findViewById(R.id.menu_from_visited_countries_button).setOnClickListener(new View.OnClickListener() {
             @Override
