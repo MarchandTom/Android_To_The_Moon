@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import org.json.JSONException;
 
@@ -29,11 +30,10 @@ public class ViewModel extends AndroidViewModel {
 
     public LiveData<List<Flight>> getAllFlights(String price,List<Country> countries) throws JSONException {
         System.out.println("getAllFlights");
-        /*if(allFlights == null){
+        if(allFlights == null){
             allFlights = repository.getAllFlights(price,countries);
         }
-        return allFlights;*/
-        return null;
+        return allFlights;
     }
 
     public LiveData<List<Country>> loadCountries() {

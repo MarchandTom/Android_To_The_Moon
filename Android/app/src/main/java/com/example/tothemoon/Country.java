@@ -3,6 +3,7 @@ package com.example.tothemoon;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -20,6 +21,7 @@ public class Country {
     public Country(){
     }
 
+    @Ignore
     public Country(String code,String name){
         this.code = code;
         this.name = name;

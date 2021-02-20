@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,18 +37,19 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Flight flight = flights.get(position);
 
-        holder.destination.setText(flights.get(position).getCountry() + " - " + flights.get(position).getCapitalCity());
-        holder.price.setText(new Double(flights.get(position).getPrice()).toString() + " €");
-        holder.date.setText(flights.get(position).getDepartureDate());
+        holder.destination.setText(flights.get(position).getCountryName() + " - " + flights.get(position).getPlaceName());
+        holder.price.setText(new Double(flights.get(position).getMaxPrice()).toString() + " €");
+        //holder.date.setText(flights.get(position).getDepartureDate());
+        holder.date.setText("20/02/2021");
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
-                bundle.putString("country",flight.getCountry());
-                bundle.putString("capitalCity",flight.getCapitalCity());
-                bundle.putString("departureDate",flight.getDepartureDate());
-                bundle.putDouble("price",flight.getPrice());
+                bundle.putString("country",flight.getCountryName());
+                bundle.putString("capitalCity",flight.getPlaceName());
+                bundle.putString("departureDate","20/02/2021");
+                bundle.putDouble("price",flight.getMaxPrice());
 
                 Navigation.findNavController(view)
                         .navigate(R.id.action_ListTripsFragment_to_RecapTripFragment,bundle);

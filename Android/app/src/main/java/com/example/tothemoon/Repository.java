@@ -7,7 +7,10 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,8 +55,9 @@ public class Repository {
 
         JSONObject json = new JSONObject();
         json.put("maxPrice",Integer.parseInt(price));
-        json.put("alreadyVisitedCountry",countries);
+        //json.put("alreadyVisitedCountry",countries);
 
+        System.out.println(json.toString());
         RequestBody body = RequestBody.create(JSON,json.toString());
         System.out.println(body.toString());
 
@@ -63,6 +67,8 @@ public class Repository {
                 .build();
 
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        objectMapper.setVisibility(VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
 
         System.out.println("request="+request);
         client.newCall(request).enqueue(new Callback() {
@@ -75,7 +81,6 @@ public class Repository {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                System.out.println("reponse="+response.body().string());
                 List<Flight> flights = Arrays.asList(objectMapper.readValue(response.body().string(), Flight[].class));
                 liveFlight.postValue(flights);
             }
