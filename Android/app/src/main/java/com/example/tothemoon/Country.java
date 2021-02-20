@@ -37,6 +37,14 @@ public class Country {
         this.visited = visited;
     }
 
+    String getName() {
+        return this.name;
+    }
+
+    boolean getVisited() {
+        return this.visited;
+    }
+
     public String toString(){
         return "name="+this.name+", code="+this.code+", visited="+this.visited;
     }

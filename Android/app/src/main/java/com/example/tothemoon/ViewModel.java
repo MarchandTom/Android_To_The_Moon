@@ -29,10 +29,11 @@ public class ViewModel extends AndroidViewModel {
 
     public LiveData<List<Flight>> getAllFlights(String price,List<Country> countries) throws JSONException {
         System.out.println("getAllFlights");
-        if(allFlights == null){
+        /*if(allFlights == null){
             allFlights = repository.getAllFlights(price,countries);
         }
-        return allFlights;
+        return allFlights;*/
+        return null;
     }
 
     public LiveData<List<Country>> loadCountries() {

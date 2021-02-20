@@ -77,8 +77,6 @@ public class ListTripsFragment extends Fragment {
 
 
 
-
-
         view.findViewById(R.id.modify_search_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
