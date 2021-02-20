@@ -1,7 +1,6 @@
 package com.example.tothemoon;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.room.Room;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class VisitedCountriesFragment extends Fragment {
 
-    private CountryViewModel countryViewModel;
+    private ViewModel viewModel;
 
     @Override
     public View onCreateView(
@@ -27,8 +23,8 @@ public class VisitedCountriesFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        countryViewModel = new ViewModelProvider(requireActivity()).get(CountryViewModel.class);
-        countryViewModel.getAllCountries().observe(getActivity(), new Observer<List<Country>>() {
+        viewModel = new ViewModelProvider(requireActivity()).get(ViewModel.class);
+        viewModel.getAllCountries().observe(getActivity(), new Observer<List<Country>>() {
             @Override
             public void onChanged(List<Country> countries) {
                 System.out.println("framgent: "+countries);

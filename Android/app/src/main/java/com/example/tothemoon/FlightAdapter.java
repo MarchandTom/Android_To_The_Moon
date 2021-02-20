@@ -18,14 +18,15 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder>{
     private Bundle bundle;
-    private ArrayList<Flight> flights;
+    private List<Flight> flights;
 
     // RecyclerView recyclerView;
-    public FlightAdapter(ArrayList<Flight> flights) {
+    public FlightAdapter(List<Flight> flights) {
         this.flights = flights;
         this.bundle = bundle;
     }

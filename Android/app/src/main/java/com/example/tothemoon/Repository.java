@@ -25,47 +25,46 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Headers;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-public class CountryRepository {
+public class Repository {
     private CountryDao countryDao;
     private LiveData<List<Country>> allCountries;
     private OkHttpClient client;
+    public static final MediaType JSON
+            = MediaType.get("application/json; charset=utf-8");
 
 
-    CountryRepository(Application application) {
+    Repository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         client  = new OkHttpClient();
         countryDao = db.countryDao();
         allCountries = (LiveData<List<Country>>) countryDao.getAll();
     }
 
-    LiveData<List<Flight>> getAllFlights(String price) throws JSONException {
+    LiveData<List<Flight>> getAllFlights(String price,List<Country> countries) throws JSONException {
         MutableLiveData<List<Flight>> liveFlight = new MutableLiveData<>();
 
+        JSONObject json = new JSONObject();
+        json.put("maxPrice",Integer.parseInt(price));
+        json.put("alreadyVisitedCountry",countries);
 
-    JSONObject fr = new JSONObject();
-    fr.put("name","France");
-    fr.put("code","FR");
-
-    JSONArray array = new JSONArray();
-    array.put(fr);
-
-    JSONObject json = new JSONObject();
-    json.put("maxPrice",Integer.parseInt(price));
-    json.put("alreadyVisitedCountry",array);
-
+        RequestBody body = RequestBody.create(JSON,json.toString());
+        System.out.println(body.toString());
 
         Request request = new Request.Builder()
                 .url("https://ap5tothemoon.herokuapp.com/travel")
-                .header("Content-Type", "application/json")
+                .post(body)
                 .build();
 
         ObjectMapper objectMapper = new ObjectMapper();
 
+        System.out.println("request="+request);
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -76,6 +75,7 @@ public class CountryRepository {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                System.out.println("reponse="+response.body().string());
                 List<Flight> flights = Arrays.asList(objectMapper.readValue(response.body().string(), Flight[].class));
                 liveFlight.postValue(flights);
             }

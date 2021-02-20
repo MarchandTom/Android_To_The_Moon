@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +23,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -28,6 +31,7 @@ import okhttp3.Response;
 
 
 public class ListTripsFragment extends Fragment {
+    private ViewModel viewModel;
 
     @Override
     public View onCreateView(
@@ -39,45 +43,41 @@ public class ListTripsFragment extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        Bundle bundle = this.getArguments();
+
+        viewModel = new ViewModelProvider(requireActivity()).get(ViewModel.class);
+            viewModel.getAllCountries().observe(getActivity(), new Observer<List<Country>>() {
+                @Override
+                public void onChanged(List<Country> countries) {
+                    try {
+                        viewModel.getAllFlights(bundle.getString("price"),countries).observe(getActivity(), new Observer<List<Flight>>() {
+                            @Override
+                            public void onChanged(List<Flight> flights) {
+                                FlightAdapter adapter = new FlightAdapter(flights);
+                                RecyclerView recyclerView = view.findViewById(R.id.fragment_main_recycler_view);
+
+                                recyclerView.setHasFixedSize(true);
+                                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                                recyclerView.setAdapter(adapter);
+                                System.out.println("listTrips="+flights);
+                            }
+                        });
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
         super.onViewCreated(view, savedInstanceState);
 
-        Bundle bundle = this.getArguments();
 //        System.out.println(bundle.getString("price"));
 //        System.out.println(bundle.getBoolean("priceSelected"));
 //        System.out.println(bundle.getString("date"));
 //        System.out.println(bundle.getBoolean("dateSelected"));
 
 
-        try {
-            ArrayList<Flight> flights = new ArrayList<Flight>();
-            flights.add(new Flight("bbbb","bbbb","bbbb",2000));
-            FlightAdapter adapter = new FlightAdapter(flights);
-
-            HttpRequest http = new HttpRequest(adapter);
-            String url = "https://ap5tothemoon.herokuapp.com/travel";
-
-            JSONObject fr = new JSONObject();
-            fr.put("name","France");
-            fr.put("code","FR");
-
-            JSONArray array = new JSONArray();
-            array.put(fr);
-
-            JSONObject json = new JSONObject();
-            json.put("maxPrice",3000.0);
-            json.put("alreadyVisitedCountry",array);
 
 
-            RecyclerView recyclerView = view.findViewById(R.id.fragment_main_recycler_view);
-
-            recyclerView.setHasFixedSize(true);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            recyclerView.setAdapter(adapter);
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
         view.findViewById(R.id.modify_search_button).setOnClickListener(new View.OnClickListener() {
             @Override

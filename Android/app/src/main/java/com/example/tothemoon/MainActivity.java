@@ -2,15 +2,9 @@ package com.example.tothemoon;
 
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
-import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,18 +13,18 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private CountryViewModel countryViewModel;
+    private ViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        countryViewModel = new ViewModelProvider(this).get(CountryViewModel.class);
-        countryViewModel.loadCountries().observe(this, new Observer<List<Country>>() {
+        viewModel = new ViewModelProvider(this).get(ViewModel.class);
+        viewModel.loadCountries().observe(this, new Observer<List<Country>>() {
             @Override
             public void onChanged(List<Country> countries) {
                 System.out.println("mainActivity"+countries);
-                countryViewModel.insertCountries(countries);
+                viewModel.insertCountries(countries);
             }
         });
 
