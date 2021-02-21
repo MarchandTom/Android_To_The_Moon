@@ -7,6 +7,7 @@ import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -34,13 +35,10 @@ public class VisitedCountriesAdapter extends RecyclerView.Adapter<VisitedCountri
         holder.country_name.setText(country.getName());
         holder.switch_visited_country.setChecked(country.getVisited());
 
-        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+        holder.switch_visited_country.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("cpicpi"+country.getName());
-                //Navigation.findNavController(view)
-                //        .navigate(R.id.action_ListTripsFragment_to_RecapTripFragment,bundle);
-
+                country.setVisited(holder.switch_visited_country.isChecked());
             }
         });
     }
