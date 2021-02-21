@@ -15,6 +15,9 @@ public interface CountryDao {
     public LiveData<List<Country>> getAll();
 
     @Update
+    public void updateCountry(Country country);
+
+    @Update
     public void updateCountries(Country... countries);
 
     @Insert

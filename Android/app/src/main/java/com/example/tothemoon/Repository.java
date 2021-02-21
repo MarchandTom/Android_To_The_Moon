@@ -50,6 +50,10 @@ public class Repository {
         allCountries = (LiveData<List<Country>>) countryDao.getAll();
     }
 
+    void updateCountry(Country country) {
+        countryDao.updateCountry(country);
+    }
+
     LiveData<List<Flight>> getAllFlights(String price,List<Country> countries) throws JSONException {
         MutableLiveData<List<Flight>> liveFlight = new MutableLiveData<>();
 

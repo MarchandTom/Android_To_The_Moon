@@ -37,7 +37,7 @@ public class VisitedCountriesAdapter extends RecyclerView.Adapter<VisitedCountri
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("cpicpi");
+                System.out.println("cpicpi"+country.getName());
                 //Navigation.findNavController(view)
                 //        .navigate(R.id.action_ListTripsFragment_to_RecapTripFragment,bundle);
 
