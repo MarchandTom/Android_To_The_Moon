@@ -26,7 +26,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -53,8 +52,12 @@ public class Repository {
         allCountries = (LiveData<List<Country>>) countryDao.getAll();
     }
 
+    void updateCountry(Country country) {
+        countryDao.updateCountry(country);
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.N)
-    LiveData<List<Flight>> getAllFlights(String price, List<Country> countries) throws JSONException {
+    LiveData<List<Flight>> getAllFlights(String price,List<Country> countries) throws JSONException {
         MutableLiveData<List<Flight>> liveFlight = new MutableLiveData<>();
 
         JSONObject json = new JSONObject();

@@ -43,5 +43,9 @@ public class ViewModel extends AndroidViewModel {
         }
     }
 
+    public void updateCountry(Country country) {
+        repository.updateCountry(country);
+    }
+
 }
 
