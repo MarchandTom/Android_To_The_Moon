@@ -2,6 +2,7 @@ package com.example.tothemoon;
 
 
 public class Flight {
+    private String departureDate = null;
     private String PlaceId;
     private String PlaceName;
     private String CountryId;
@@ -77,6 +78,14 @@ public class Flight {
 
     public void setMaxPrice(Integer maxPrice) {
         this.MaxPrice = maxPrice;
+    }
+
+    public String getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(String departureDate) {
+        this.departureDate = departureDate;
     }
 
     @Override
