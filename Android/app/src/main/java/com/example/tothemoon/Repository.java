@@ -2,8 +2,10 @@ package com.example.tothemoon;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -24,6 +26,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -50,12 +53,23 @@ public class Repository {
         allCountries = (LiveData<List<Country>>) countryDao.getAll();
     }
 
-    LiveData<List<Flight>> getAllFlights(String price,List<Country> countries) throws JSONException {
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    LiveData<List<Flight>> getAllFlights(String price, List<Country> countries) throws JSONException {
         MutableLiveData<List<Flight>> liveFlight = new MutableLiveData<>();
 
         JSONObject json = new JSONObject();
         json.put("maxPrice",Integer.parseInt(price));
-        //json.put("alreadyVisitedCountry",countries);
+
+        JSONArray array = new JSONArray();
+
+        for(Country c : countries) {
+            JSONObject o = new JSONObject();
+            o.put("name",c.name);
+            o.put("code",c.code);
+            array.put(o);
+        }
+
+        json.put("alreadyVisitedCountry",array);
 
         System.out.println(json.toString());
         RequestBody body = RequestBody.create(json.toString(),JSON);

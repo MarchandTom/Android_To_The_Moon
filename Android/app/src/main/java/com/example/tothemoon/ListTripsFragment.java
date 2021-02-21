@@ -1,5 +1,6 @@
 package com.example.tothemoon;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -24,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -47,11 +50,13 @@ public class ListTripsFragment extends Fragment {
 
         viewModel = new ViewModelProvider(requireActivity()).get(ViewModel.class);
             viewModel.getAllCountries().observe(getActivity(), new Observer<List<Country>>() {
+
+                @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onChanged(List<Country> countries) {
                     Log.i("COUNTRY","countries count = "+ countries.size());
                     try {
-                        viewModel.getAllFlights(bundle.getString("price"),countries).observe(getActivity(), new Observer<List<Flight>>() {
+                        viewModel.getAllFlights(bundle.getString("price"),countries.stream().filter(country -> country.getVisited() == true).collect(Collectors.toList())).observe(getActivity(), new Observer<List<Flight>>() {
                             @Override
                             public void onChanged(List<Flight> flights) {
                                 System.out.println("listTripsflights="+flights);
