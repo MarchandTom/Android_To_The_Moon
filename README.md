@@ -14,7 +14,7 @@ Pour se faire elle communique avec une application [Backend node.js](https://git
 Cette dernière communique avec [l'API skyscanner](https://rapidapi.com/skyscanner/api/skyscanner-flight-search?endpoint=5a9ca8d2e4b084deb4ea61a9), elle nous a permis de récupérer une
 liste de pays que nous stockons dans notre application backend.
 
-Il existe cependant une limitation liée à cette API. On ne peut réalisé que 50 appels par minutes. Ce qui rend parfois notre application momentanément inutilisable.
+Il existe cependant une limitation liée à cette API. On ne peut réaliser que 50 appels par minutes. Ce qui rend parfois notre application momentanément inutilisable.
 
 ## Comment les appels au back fonctionne:
 
