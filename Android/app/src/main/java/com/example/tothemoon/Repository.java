@@ -58,7 +58,7 @@ public class Repository {
         //json.put("alreadyVisitedCountry",countries);
 
         System.out.println(json.toString());
-        RequestBody body = RequestBody.create(JSON,json.toString());
+        RequestBody body = RequestBody.create(json.toString(),JSON);
         System.out.println(body.toString());
 
         Request request = new Request.Builder()

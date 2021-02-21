@@ -39,8 +39,7 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
 
         holder.destination.setText(flights.get(position).getCountryName() + " - " + flights.get(position).getPlaceName());
         holder.price.setText(new Double(flights.get(position).getMaxPrice()).toString() + " €");
-        //holder.date.setText(flights.get(position).getDepartureDate());
-        holder.date.setText("20/02/2021");
+        holder.date.setText(flights.get(position).getDepartureDate());
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".SearchTripFragment">
 
-    <androidx.appcompat.widget.SwitchCompat
+    <TextView
         android:id="@+id/switchDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputDate" />
 
-    <androidx.appcompat.widget.SwitchCompat
+    <TextView
         android:id="@+id/switchPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

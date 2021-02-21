@@ -49,12 +49,15 @@ public class ListTripsFragment extends Fragment {
             viewModel.getAllCountries().observe(getActivity(), new Observer<List<Country>>() {
                 @Override
                 public void onChanged(List<Country> countries) {
-                    System.out.println("listTripsCountries="+countries);
+                    Log.i("COUNTRY","countries count = "+ countries.size());
                     try {
                         viewModel.getAllFlights(bundle.getString("price"),countries).observe(getActivity(), new Observer<List<Flight>>() {
                             @Override
                             public void onChanged(List<Flight> flights) {
                                 System.out.println("listTripsflights="+flights);
+                                for(Flight f : flights) {
+                                    f.setDepartureDate(bundle.getString("date"));
+                                }
                                 FlightAdapter adapter = new FlightAdapter(flights);
                                 RecyclerView recyclerView = view.findViewById(R.id.fragment_main_recycler_view);
 
