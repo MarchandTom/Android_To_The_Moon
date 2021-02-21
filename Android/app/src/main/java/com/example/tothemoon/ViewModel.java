@@ -13,7 +13,6 @@ import java.util.List;
 public class ViewModel extends AndroidViewModel {
     private Repository repository;
     private LiveData<List<Country>> allCountries;
-    private LiveData<List<Flight>> allFlights;
 
     // Initialize the repository and the list of words
     public ViewModel(Application application){
@@ -29,11 +28,7 @@ public class ViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Flight>> getAllFlights(String price,List<Country> countries) throws JSONException {
-        System.out.println("getAllFlights");
-        if(allFlights == null){
-            allFlights = repository.getAllFlights(price,countries);
-        }
-        return allFlights;
+        return repository.getAllFlights(price,countries);
     }
 
     public LiveData<List<Country>> loadCountries() {
