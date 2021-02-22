@@ -14,7 +14,7 @@ Pour se faire elle communique avec une application [Backend node.js](https://git
 Cette dernière communique avec [l'API skyscanner](https://rapidapi.com/skyscanner/api/skyscanner-flight-search?endpoint=5a9ca8d2e4b084deb4ea61a9), elle nous a permis de récupérer une
 liste de pays que nous stockons dans notre application backend.
 
-Il existe cependant une limitation liée à cette API. On ne peut réaliser que 50 appels par minutes. Ce qui rend parfois notre application momentanément inutilisable.
+!!! Il existe cependant une limitation liée à cette API. On ne peut réaliser que 50 appels par minutes. Ce qui rend parfois notre application momentanément inutilisable.
 
 ## Comment les appels au back fonctionne:
 
@@ -42,3 +42,9 @@ Résultat:
         "maxPrice": 215
     }
    ]
+
+## Comment est structurée notre application:
+### Communications entre les composants
+
+Pour facilement échanger de la donnée entre nos composants, nous avons utilisé les LiveData et Observers, couplé à un ViewModel.
+Le ViewModel va quant à lui nous permettre de communiquer avec le Repository, responsable à la fois des appels API avec OkHttp et des appels à notre BDD implémenté avec la librairie Room dans un DAO.
