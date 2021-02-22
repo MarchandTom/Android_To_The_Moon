@@ -36,7 +36,7 @@ public class RecapTripFragment extends Fragment {
         Bundle bundle = this.getArguments();
 
         recapDestination.setText(bundle.getString("country")+" - "+bundle.getString("capitalCity"));
-        recapPrice.setText(String.valueOf(bundle.getDouble("price"))+" €");
+        recapPrice.setText(String.valueOf(bundle.getDouble("priceFlight"))+" €");
         String dateDisplay=bundle.getString("departureDate").replace('-', '/');
         dateDisplay = dateDisplay.substring(0, dateDisplay.length()-3);
         recapDate.setText(dateDisplay);

@@ -21,7 +21,7 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
     private List<Flight> flights;
 
     // RecyclerView recyclerView;
-    public FlightAdapter(List<Flight> flights) {
+    public FlightAdapter(List<Flight> flights, Bundle bundle) {
         this.flights = flights;
         this.bundle = bundle;
     }
@@ -44,11 +44,10 @@ public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
                 bundle.putString("country",flight.getCountryName());
                 bundle.putString("capitalCity",flight.getPlaceName());
                 bundle.putString("departureDate","20/02/2021");
-                bundle.putDouble("price",flight.getMaxPrice());
+                bundle.putDouble("priceFlight",flight.getMaxPrice());
 
                 Navigation.findNavController(view)
                         .navigate(R.id.action_ListTripsFragment_to_RecapTripFragment,bundle);

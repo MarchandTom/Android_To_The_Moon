@@ -47,6 +47,10 @@ public class ListTripsFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         Bundle bundle = this.getArguments();
+        System.out.println(bundle.getString("price"));
+        for(String key: bundle.keySet()) {
+            System.out.println("+"+key);
+        }
 
         viewModel = new ViewModelProvider(requireActivity()).get(ViewModel.class);
             viewModel.getAllCountries().observe(getActivity(), new Observer<List<Country>>() {
@@ -63,7 +67,7 @@ public class ListTripsFragment extends Fragment {
                                 for(Flight f : flights) {
                                     f.setDepartureDate(bundle.getString("date"));
                                 }
-                                FlightAdapter adapter = new FlightAdapter(flights);
+                                FlightAdapter adapter = new FlightAdapter(flights, bundle);
                                 RecyclerView recyclerView = view.findViewById(R.id.fragment_main_recycler_view);
 
                                 recyclerView.setHasFixedSize(true);
